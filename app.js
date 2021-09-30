@@ -174,8 +174,8 @@ checkoutButton.addEventListener("click", function () {
   var urlencoded = new URLSearchParams();
   urlencoded.append("payment_method_types", 'card');
   
-  urlencoded.append("success_url", `${YOUR_DOMAIN}/success.html?session_id={CHECKOUT_SESSION_ID}`);
-  urlencoded.append("cancel_url", `${YOUR_DOMAIN}/cancel.html`);
+  urlencoded.append("success_url", `https://bhima-iauro.github.io/stripe-web-client-test/success.html?session_id={CHECKOUT_SESSION_ID}`);
+  urlencoded.append("cancel_url", `$https://bhima-iauro.github.io/stripe-web-client-test/cancel.html`);
  // urlencoded.append("success_url", "https://preview.wem.io/29822/static/files/94322/success.html");
  // urlencoded.append("cancel_url", "https://preview.wem.io/29822/static/files/94323/cancel.html");
   
