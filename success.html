@@ -1,0 +1,60 @@
+<html>
+<head>
+  <title>Thanks for your order!</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+  <script>
+    function getUserPurchaseDetails() {
+       var url = new URL(window.location.href);
+var sessionId = url.searchParams.get("session_id");
+var urlencoded = new URLSearchParams();
+      urlencoded.append("session_id", sessionId);
+
+fetch("https://howreally.iauro.co/stripe/purchase-details"  , {
+  method: "POST",
+  body : urlencoded,
+  headers: {"Content-type": "application/x-www-form-urlencoded",
+    "Access-Control-Allow-Credentials":true,
+    "Access-Control-Allow-Origin":"*",
+    "Access-Control-Allow-Methods":["POST","GET"],
+   "Access-Control-Allow-Headers":'Content-Type'}
+})
+  .then(function (response) {
+      return response.json();
+  })
+  .then(function (result) {
+      if (result.error) {
+        console.log("error ", result.error)
+       alert(result.error.message || result.error.code)
+      }else {
+        console.log("final test", result)
+    document.getElementById("username").innerHTML = result.name;
+    document.getElementById("useremail").innerHTML = result.email;
+      }
+    })
+  .catch(function (error) {
+    alert("ERR: ",error);
+    console.log("error frontend2 ",error)
+  });
+
+    }
+       
+      setTimeout(function() {
+        getUserPurchaseDetails()
+}, 500);
+    </script>
+ 
+  <section>
+    <h3 id="username"></h3>
+    <h3 id="useremail"></h3>
+    <p>
+      We appreciate your business! If you have any questions, please email
+      <a href="mailto:orders@example.com">orders@example.com</a>.
+    </p>
+  </section>
+</body>
+</html>
